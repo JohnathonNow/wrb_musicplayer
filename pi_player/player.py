@@ -1,4 +1,7 @@
+#!/usr/bin/python2
 import socket
+import os
+import subprocess
 addr = ('johnwesthoff.com', 9990)
 while True:
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -13,4 +16,7 @@ while True:
         song = stream.readline()
         print('Response read!')
         print('Now playing {}'.format(song))
+        process = subprocess.Popen('mpsyt', shell=True, stdin=subprocess.PIPE)
+        process.communicate('playurl {}\nq\n'.format(song))
+        process.wait()
     
