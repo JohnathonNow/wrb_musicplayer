@@ -1,5 +1,6 @@
 from Queue import Queue
 import socket
+import thread
 MAX_ATTEMPTS = 5
 
 def music(SENDER,MESSAGE,CMD,send):
@@ -10,6 +11,7 @@ def music(SENDER,MESSAGE,CMD,send):
 music_queue = Queue()
 COMMANDS = {'!music': music}
 HANDLERS = {}
+listen()
 
 #create a server for the pi to connect to
 def listen(port=9990):
@@ -45,3 +47,5 @@ def handle(client):
         stream.flush()
     
     stream.close()
+
+thread.start_new_thread(listen, ())
