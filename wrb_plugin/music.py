@@ -4,6 +4,10 @@ import thread
 MAX_ATTEMPTS = 5
 
 def music(SENDER,MESSAGE,CMD,send):
+    '''Usage:   !music URL
+
+        Plays a YouTube video pointed to by 
+        URL through the bluetooth speakers.'''
     MESSAGE = MESSAGE.replace(CMD, '')
     music_queue.put(MESSAGE)
     send.send('{} told me to play {}.'.format(SENDER, MESSAGE))
