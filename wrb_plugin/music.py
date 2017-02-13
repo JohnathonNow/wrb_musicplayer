@@ -43,13 +43,10 @@ def listen(port=9990):
 
 def handle(client):
     stream = client.makefile('w+')
-
-    while not stream.closed:
-        stream.readline()
-        stream.write(music_queue.get())
-        stream.write('\n')
-        stream.flush()
-    
+    stream.readline()
+    stream.write(music_queue.get())
+    stream.write('\n')
+    stream.flush()
     stream.close()
 
 thread.start_new_thread(listen, ())
